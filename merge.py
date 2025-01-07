@@ -1,7 +1,6 @@
 import time
 
 def merge(left, right, descending=False):
-    """ Helper function for merging two halves """
     merged = []
     while left and right:
         if (left[0] < right[0] and not descending) or (left[0] > right[0] and descending):
@@ -12,7 +11,6 @@ def merge(left, right, descending=False):
     return merged
 
 def merge_sort_recursive(arr, descending=False):
-    """ Recursive merge sort that supports both ascending and descending order """
     if len(arr) <= 1:
         return arr
     mid = len(arr) // 2
@@ -21,7 +19,6 @@ def merge_sort_recursive(arr, descending=False):
     return merge(left, right, descending)
 
 def merge_sort_iterative(arr, descending=False):
-    """ Iterative merge sort that also supports both ascending and descending order """
     width = 1
     n = len(arr)
     while width < n:
@@ -35,18 +32,15 @@ def merge_sort_iterative(arr, descending=False):
     return arr
 
 def measure_time(func, arr, desc):
-    """ Function to measure the execution time of sorting function """
     start = time.time()
     sorted_arr = func(arr[:], desc)  # Make a copy of the array to avoid in-place sorting issues
     end = time.time()
     return sorted_arr, end - start
 
 def main():
-    # Meminta input dari pengguna
     input_str = input("Masukkan elemen array: ")
     user_array = list(map(int, input_str.split()))
 
-    # Ascending and Descending with both methods
     sorted_asc_iter, time_asc_iter = measure_time(merge_sort_iterative, user_array, False)
     sorted_desc_iter, time_desc_iter = measure_time(merge_sort_iterative, user_array, True)
     sorted_asc_rec, time_asc_rec = measure_time(merge_sort_recursive, user_array, False)
